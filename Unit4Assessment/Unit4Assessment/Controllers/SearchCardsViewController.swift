@@ -40,18 +40,38 @@ class SearchCardsViewController: UIViewController {
         searchCardsView.searchBar.delegate = self
         
         searchCardsView.collectionView.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
+        
+        //fetchCards()
+        loadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-       // fetchCards()
+    func loadData() {
+        cards = Card.getCards()
+        
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        //fetchCards()
+//    }
     
     //FIXME: create private func fetchCards() that searches from API and changes on every symbol
+//    private func fetchCards() {
+//        CardsApIClient.fetchCards{[weak self] result in
+//            switch result {
+//            case .failure(let appError):
+//                print("error fetching cards: \(appError)")
+//            case .success(let cards):
+//                print("found \(cards.count) cards and expect 52 cards")
+//                dump(cards)
+//                self?.cards = cards
+//            }
+//        }
+//    }
 }
 
 extension SearchCardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //FIXME: cards.count
         return cards.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,6 +80,8 @@ extension SearchCardsViewController: UICollectionViewDataSource {
         }
         let card = cards[indexPath.row]
         cell.configureCell(with: card)
+        //FIXME: remove cell color
+        cell.backgroundColor = .yellow
         return cell
     }
 }
@@ -71,24 +93,6 @@ extension SearchCardsViewController: UICollectionViewDelegateFlowLayout {
         let itemHeight: CGFloat = maxSize.height * 0.30
         return CGSize(width: itemWidth, height: itemHeight)
     }
-    
-    //FIXME:
-    // this is the way how we segue to anothr VC
-//       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//           let article = newsArticles[indexPath.row]
-//           let articleDVC = ArticleDetailViewController()
-//
-//           // TODO: after assessment we will be using initializers as dependancy injection mechanism
-//           articleDVC.article = article
-//
-//           // DP Step 6. Setting up data persistance and its delegate
-//           // passinge the persistance
-//           articleDVC.dataPersistance = dataPersistance
-//
-//           // we cannot use navigation controller to push viewcontroller
-//           // UNTIL WE EMBADE IT TO NAVIGATION CONTROLLER
-//           navigationController?.pushViewController(articleDVC, animated: true)
-//           // because we have never embadded a navigationcontroller
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if searchCardsView.searchBar.isFirstResponder {
@@ -102,9 +106,10 @@ extension SearchCardsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
         guard !searchText.isEmpty else {
-           // fetchCards()
+            //fetchCards()
+            loadData()
             return
         }
-        cards = cards.filter { $0.cardTitle.lowercased().contains(searchText.lowercased())}
+        cards = cards.filter { $0.quizTitle.lowercased().contains(searchText.lowercased())}
     }
 }
