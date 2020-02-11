@@ -99,7 +99,6 @@ private var card: Card!
         print("button was pressed for card \(card.quizTitle)")
         
         //FIXME: delegate?.didSelectMoreButton(self, article: currentArticle)
-        
     }
     
     private func setupMoreActionsButtonConstraints() {
@@ -108,7 +107,7 @@ private var card: Card!
         NSLayoutConstraint.activate([
             moreActionsButton.topAnchor.constraint(equalTo: topAnchor),
             moreActionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            moreActionsButton.heightAnchor.constraint(equalToConstant: 44),
+        moreActionsButton.heightAnchor.constraint(equalToConstant: 44),
             moreActionsButton.widthAnchor.constraint(equalTo: moreActionsButton.heightAnchor)
         ])
     }

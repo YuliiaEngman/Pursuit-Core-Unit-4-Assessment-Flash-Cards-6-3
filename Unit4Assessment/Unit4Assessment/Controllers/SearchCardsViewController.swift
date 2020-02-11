@@ -46,7 +46,6 @@ class SearchCardsViewController: UIViewController {
     
     func loadData() {
         cards = Card.getCards()
-        
     }
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(true)
