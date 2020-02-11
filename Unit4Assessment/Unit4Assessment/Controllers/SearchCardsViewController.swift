@@ -13,7 +13,6 @@ class SearchCardsViewController: UIViewController {
     
     private let searchCardsView = SearchCardsView()
     
-    //FIXME:
     public var dataPersistence: DataPersistence<Card>!
     
     // data for our collection view

@@ -1,5 +1,5 @@
 //
-//  SearchCell.swift
+//  CardCell.swift
 //  Unit4Assessment
 //
 //  Created by Yuliia Engman on 2/11/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class SearchCell: UICollectionViewCell {
+class CardCell: UICollectionViewCell {
     
-    private var card: Card!
+private var card: Card!
     
     //ANIMATION:
     private lazy var longPressGesture:
@@ -20,10 +20,10 @@ class SearchCell: UICollectionViewCell {
             return gesture
     }()
     
-    public lazy var addButton: UIButton = {
+    public lazy var moreActionsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        button.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.addTarget(self, action: #selector(moreActionsButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -58,7 +58,7 @@ class SearchCell: UICollectionViewCell {
     }
     
     private func commonInit(){
-        setupAddButtonConstraints()
+        setupMoreActionsButtonConstraints()
         setupQuestionLabelConstraints()
         setupAnswersLabelConstraints()
         
@@ -95,21 +95,21 @@ class SearchCell: UICollectionViewCell {
         }
     }
     
-    @objc private func addButtonPressed(_ sender: UIButton){
+    @objc private func moreActionsButtonPressed(_ sender: UIButton){
         print("button was pressed for card \(card.quizTitle)")
         
         //FIXME: delegate?.didSelectMoreButton(self, article: currentArticle)
         
     }
     
-    private func setupAddButtonConstraints() {
-        addSubview(addButton)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
+    private func setupMoreActionsButtonConstraints() {
+        addSubview(moreActionsButton)
+        moreActionsButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: topAnchor),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            addButton.heightAnchor.constraint(equalToConstant: 44),
-            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor)
+            moreActionsButton.topAnchor.constraint(equalTo: topAnchor),
+            moreActionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            moreActionsButton.heightAnchor.constraint(equalToConstant: 44),
+            moreActionsButton.widthAnchor.constraint(equalTo: moreActionsButton.heightAnchor)
         ])
     }
     
@@ -117,7 +117,7 @@ class SearchCell: UICollectionViewCell {
         addSubview(questionLabel)
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor),
+            questionLabel.topAnchor.constraint(equalTo: moreActionsButton.bottomAnchor),
             questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             questionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)])
@@ -127,7 +127,7 @@ class SearchCell: UICollectionViewCell {
         addSubview(answersLabel)
         answersLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            answersLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor),
+            answersLabel.topAnchor.constraint(equalTo: moreActionsButton.bottomAnchor),
             answersLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             answersLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             answersLabel.bottomAnchor.constraint(equalTo: bottomAnchor)

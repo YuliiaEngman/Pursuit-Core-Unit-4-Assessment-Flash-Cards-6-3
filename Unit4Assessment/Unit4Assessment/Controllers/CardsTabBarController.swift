@@ -12,7 +12,6 @@ import DataPersistence
 
 class CardsTabBarController: UITabBarController {
     
-    // FIXME:
     private var dataPersistence = DataPersistence<Card>(filename: "savedCards.plist")
     
     //VC1:
@@ -20,9 +19,9 @@ class CardsTabBarController: UITabBarController {
         let viewController = CardsQuizViewController()
         viewController.tabBarItem = UITabBarItem(title: "Cards Quiz", image: UIImage(systemName: "rectangle.grid.1x2"), tag: 0)
       
+        //FIXME: add datapersistence + delegate?
         viewController.dataPersistence = dataPersistence
-          //FIXME: add datapersistence + delegate?
-        //viewController.dataPersistence.delegate = viewController
+        viewController.dataPersistence.delegate = viewController
         return viewController
     }()
     
@@ -30,7 +29,6 @@ class CardsTabBarController: UITabBarController {
   private lazy var createCardsViewController: CreateCardsViewController = {
         let viewController = CreateCardsViewController()
         viewController.tabBarItem = UITabBarItem(title: "Create Card", image: UIImage(systemName: "square.and.pencil"), tag: 1)
-        //FIXME: add datapersistence
         viewController.dataPersistence = dataPersistence
         return viewController
     }()
@@ -39,7 +37,6 @@ class CardsTabBarController: UITabBarController {
     private lazy var searchCardsViewController: SearchCardsViewController = {
         let viewController = SearchCardsViewController()
         viewController.tabBarItem = UITabBarItem(title: "Search Cards", image: UIImage(systemName: "magnifyingglass"), tag: 2)
-        //FIXME: add datapersistence
         viewController.dataPersistence = dataPersistence
         return viewController
     }()

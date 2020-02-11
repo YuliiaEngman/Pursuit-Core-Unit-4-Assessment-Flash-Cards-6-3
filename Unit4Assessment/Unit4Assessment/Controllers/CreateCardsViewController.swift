@@ -12,8 +12,7 @@ import DataPersistence
 class CreateCardsViewController: UIViewController {
     
     private let createCardView = CreateCardView()
-    
-    //FIXME:
+
     public var dataPersistence: DataPersistence<Card>!
     
     override func loadView() {
