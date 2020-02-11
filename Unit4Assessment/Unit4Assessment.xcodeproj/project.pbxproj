@@ -11,7 +11,10 @@
 		0F568D1F23F3038F001DBC88 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0F568D1E23F3038F001DBC88 /* ImageKit */; };
 		0F568D2123F30416001DBC88 /* CardsQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F568D2023F30416001DBC88 /* CardsQuizViewController.swift */; };
 		0F568D2323F30430001DBC88 /* CreateCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F568D2223F30430001DBC88 /* CreateCardsViewController.swift */; };
-		0F568D2523F30475001DBC88 /* SearchCradsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F568D2423F30475001DBC88 /* SearchCradsViewController.swift */; };
+		0F568D2523F30475001DBC88 /* SearchCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F568D2423F30475001DBC88 /* SearchCardsViewController.swift */; };
+		0FC341C023F30AF100319CA8 /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341BF23F30AF100319CA8 /* CardsView.swift */; };
+		0FC341C323F30B1300319CA8 /* CreateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341C223F30B1300319CA8 /* CreateCardView.swift */; };
+		0FC341C523F30B2700319CA8 /* SearchCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341C423F30B2700319CA8 /* SearchCardsView.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
@@ -33,7 +36,10 @@
 		0F568D1A23F302CA001DBC88 /* CardsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTabBarController.swift; sourceTree = "<group>"; };
 		0F568D2023F30416001DBC88 /* CardsQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsQuizViewController.swift; sourceTree = "<group>"; };
 		0F568D2223F30430001DBC88 /* CreateCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardsViewController.swift; sourceTree = "<group>"; };
-		0F568D2423F30475001DBC88 /* SearchCradsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCradsViewController.swift; sourceTree = "<group>"; };
+		0F568D2423F30475001DBC88 /* SearchCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsViewController.swift; sourceTree = "<group>"; };
+		0FC341BF23F30AF100319CA8 /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
+		0FC341C223F30B1300319CA8 /* CreateCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardView.swift; sourceTree = "<group>"; };
+		0FC341C423F30B2700319CA8 /* SearchCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsView.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,9 +76,20 @@
 				0F568D1A23F302CA001DBC88 /* CardsTabBarController.swift */,
 				0F568D2023F30416001DBC88 /* CardsQuizViewController.swift */,
 				0F568D2223F30430001DBC88 /* CreateCardsViewController.swift */,
-				0F568D2423F30475001DBC88 /* SearchCradsViewController.swift */,
+				0F568D2423F30475001DBC88 /* SearchCardsViewController.swift */,
+				0FC341C123F30AF700319CA8 /* Views */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0FC341C123F30AF700319CA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FC341BF23F30AF100319CA8 /* CardsView.swift */,
+				0FC341C223F30B1300319CA8 /* CreateCardView.swift */,
+				0FC341C423F30B2700319CA8 /* SearchCardsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5790238B23F2EE39000AA216 = {
@@ -221,11 +238,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FC341C323F30B1300319CA8 /* CreateCardView.swift in Sources */,
+				0FC341C023F30AF100319CA8 /* CardsView.swift in Sources */,
 				0F568D2323F30430001DBC88 /* CreateCardsViewController.swift in Sources */,
 				0F568D2123F30416001DBC88 /* CardsQuizViewController.swift in Sources */,
-				0F568D2523F30475001DBC88 /* SearchCradsViewController.swift in Sources */,
+				0F568D2523F30475001DBC88 /* SearchCardsViewController.swift in Sources */,
 				5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */,
 				5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */,
+				0FC341C523F30B2700319CA8 /* SearchCardsView.swift in Sources */,
 				0F568D1B23F302CA001DBC88 /* CardsTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,16 +25,18 @@ class CardsTabBarController: UITabBarController {
         return viewController
     }()
     
-    private lazy var createCardsViewController: CreateCardsViewController = {
+    //VC 2:
+  private lazy var createCardsViewController: CreateCardsViewController = {
         let viewController = CreateCardsViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Create Card", image: UIImage(systemName: "square.and.pensil"), tag: 1)
+        viewController.tabBarItem = UITabBarItem(title: "Create Card", image: UIImage(systemName: "square.and.pencil"), tag: 1)
         //FIXME: add datapersistence
         //viewController.dataPersistance = dataPersistance
         return viewController
     }()
     
-    private lazy var searchCardsViewController: SearchCradsViewController = {
-        let viewController = SearchCradsViewController()
+    //VC 3:
+    private lazy var searchCardsViewController: SearchCardsViewController = {
+        let viewController = SearchCardsViewController()
         viewController.tabBarItem = UITabBarItem(title: "Search Cards", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         //FIXME: add datapersistence
         //viewController.dataPersistance = dataPersistance
@@ -45,6 +47,7 @@ class CardsTabBarController: UITabBarController {
         super.viewDidLoad()
         //FIXME: delete this color
         view.backgroundColor = .systemOrange
+        
         viewControllers = [UINavigationController(rootViewController: cardsQuizViewController), UINavigationController(rootViewController: createCardsViewController), UINavigationController(rootViewController: searchCardsViewController)]
     }
 }
