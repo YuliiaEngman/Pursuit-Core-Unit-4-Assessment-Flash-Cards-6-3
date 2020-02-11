@@ -10,25 +10,41 @@ import XCTest
 @testable import Unit4Assessment
 
 class Unit4AssessmentTests: XCTestCase {
+    
+    func testCardsModel() {
+        // arrange
+        // grab json and validate in jsonlint.com
+        // we are testing first article
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let jsonData = """
+{
+"cardListType": "q and a",
+"apiVersion": "1.2.3",
+"cards": [
+    {
+        "id": "1",
+        "cardTitle": "What is the difference between a synchronous & an asynchronous task?",
+        "facts": [
+            "Synchronous: waits until the task have completed.",
+            "Asynchronous: completes a task in the background and can notify you when complete."
+        ]
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+]
+}
+""".data(using: .utf8)!
+        
+        let expectedCardTitle = "What is the difference between a synchronous & an asynchronous task?"
+        
+        // act
+        do {
+            let structOfCards = try
+                JSONDecoder().decode(StructOfCards.self, from: jsonData)
+            
+            // assert
+            let supTitle = structOfCards.cards.first?.cardTitle ?? ""
+            XCTAssertEqual(expectedCardTitle, supTitle)
+        } catch {
+            XCTFail("decoding error: \(error)")
         }
     }
-
 }

@@ -15,7 +15,7 @@
 		0FC341C023F30AF100319CA8 /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341BF23F30AF100319CA8 /* CardsView.swift */; };
 		0FC341C323F30B1300319CA8 /* CreateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341C223F30B1300319CA8 /* CreateCardView.swift */; };
 		0FC341C523F30B2700319CA8 /* SearchCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341C423F30B2700319CA8 /* SearchCardsView.swift */; };
-		0FC341C923F3116300319CA8 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341C823F3116300319CA8 /* NetworkServices.swift */; };
+		0FC341C923F3116300319CA8 /* CradsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341C823F3116300319CA8 /* CradsAPIClient.swift */; };
 		0FC341CC23F311DA00319CA8 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC341CB23F311DA00319CA8 /* CardModel.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
@@ -42,7 +42,7 @@
 		0FC341BF23F30AF100319CA8 /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		0FC341C223F30B1300319CA8 /* CreateCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardView.swift; sourceTree = "<group>"; };
 		0FC341C423F30B2700319CA8 /* SearchCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsView.swift; sourceTree = "<group>"; };
-		0FC341C823F3116300319CA8 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
+		0FC341C823F3116300319CA8 /* CradsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CradsAPIClient.swift; sourceTree = "<group>"; };
 		0FC341CB23F311DA00319CA8 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		0FC341C723F3111F00319CA8 /* NetworkServices&Model */ = {
 			isa = PBXGroup;
 			children = (
-				0FC341C823F3116300319CA8 /* NetworkServices.swift */,
+				0FC341C823F3116300319CA8 /* CradsAPIClient.swift */,
 				0FC341CB23F311DA00319CA8 /* CardModel.swift */,
 			);
 			path = "NetworkServices&Model";
@@ -252,7 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FC341C923F3116300319CA8 /* NetworkServices.swift in Sources */,
+				0FC341C923F3116300319CA8 /* CradsAPIClient.swift in Sources */,
 				0FC341CC23F311DA00319CA8 /* CardModel.swift in Sources */,
 				0FC341C323F30B1300319CA8 /* CreateCardView.swift in Sources */,
 				0FC341C023F30AF100319CA8 /* CardsView.swift in Sources */,
