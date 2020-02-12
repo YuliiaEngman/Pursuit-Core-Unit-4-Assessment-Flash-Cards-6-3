@@ -28,7 +28,7 @@ class CreateCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .systemGreen
         navigationItem.title = "Create Card"
         
         createCardView.textField.delegate = self

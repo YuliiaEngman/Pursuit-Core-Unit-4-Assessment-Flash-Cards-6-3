@@ -31,7 +31,7 @@ class CardsQuizViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .systemYellow
         navigationItem.title = "Card Quiz"
         
         cardsView.collectionView.dataSource = self
@@ -62,7 +62,7 @@ extension CardsQuizViewController: UICollectionViewDataSource {
         let savedCard = savedCards[indexPath.row]
         cell.configureCell(for: savedCard)
         //FIXME: remove cell color
-        cell.backgroundColor = .blue
+        cell.backgroundColor = .yellow
         cell.delegate = self
         return cell
     }
