@@ -9,6 +9,7 @@
 import UIKit
 import DataPersistence
 
+
 class CardsQuizViewController: UIViewController {
     
     private let cardsView = CardsView()
@@ -47,8 +48,7 @@ class CardsQuizViewController: UIViewController {
 
 extension CardsQuizViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //FIXME: cards.count
-        return 20
+        return cards.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardCell else {
@@ -58,6 +58,7 @@ extension CardsQuizViewController: UICollectionViewDataSource {
         cell.configureCell(with: card)
         //FIXME: remove cell color
         cell.backgroundColor = .blue
+        cell.delegate = self
         return cell
     }
 }
@@ -80,7 +81,38 @@ extension CardsQuizViewController: DataPersistenceDelegate {
     }
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         print("item was deleted")
+        //FIXME:
         //fetchSavedArticles()
+    }
+}
+
+extension CardsQuizViewController: CardCellDelegate {
+    func didSelectMoreActionsButton(_ cardCell: CardCell, card: Card) {
+        print("didSelectMoreActionsButton: \(card.quizTitle)")
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) {
+            UIAlertAction in
+            self.deleteCard(card)
+        }
+        
+        alertController.addAction(cancelAction)
+        
+        alertController.addAction(deleteAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    private func deleteCard(_ card: Card) {
+        guard let index = cards.firstIndex(of: card) else {
+            return
+        }
+        do {
+            try dataPersistence.deleteItem(at: index)
+        } catch {
+            print("error deleting card: \(error)")
+        }
     }
 }
 

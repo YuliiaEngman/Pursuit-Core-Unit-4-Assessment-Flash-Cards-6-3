@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol SearchCellDelegate: AnyObject {
+    func didSelectAddButton(_ searchCell: SearchCell, card: Card)
+}
+
 class SearchCell: UICollectionViewCell {
     
-    private var card: Card!
+    weak var delegate: SearchCellDelegate?
+    
+    private var currentCard: Card!
     
     //ANIMATION:
     private lazy var longPressGesture:
@@ -96,10 +102,9 @@ class SearchCell: UICollectionViewCell {
     }
     
     @objc private func addButtonPressed(_ sender: UIButton){
-        print("button was pressed for card \(card.quizTitle)")
-        
-        //FIXME: delegate?.didSelectMoreButton(self, article: currentArticle)
-        
+        print("button was pressed for card \(currentCard.quizTitle)")
+        //FIXME:
+        delegate?.didSelectAddButton(self, card: currentCard)
     }
     
     private func setupAddButtonConstraints() {
@@ -134,12 +139,13 @@ class SearchCell: UICollectionViewCell {
         ])
     }
     
-    public func configureCell(with cards: Card) {
-        questionLabel.text = cards.quizTitle
+    public func configureCell(for card: Card) {
+        currentCard = card
+        questionLabel.text = card.quizTitle
         answersLabel.text = """
-        \(cards.facts.first?.description ?? "")
+        \(card.facts.first?.description ?? "")
         
-        \(cards.facts.last?.description ?? "")
+        \(card.facts.last?.description ?? "")
         """
     }
 }

@@ -38,6 +38,8 @@ class CardsTabBarController: UITabBarController {
         let viewController = SearchCardsViewController()
         viewController.tabBarItem = UITabBarItem(title: "Search Cards", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         viewController.dataPersistence = dataPersistence
+        //FIXME: conform to delegate inside search VC
+        //viewController.dataPersistence.delegate = viewController
         return viewController
     }()
     

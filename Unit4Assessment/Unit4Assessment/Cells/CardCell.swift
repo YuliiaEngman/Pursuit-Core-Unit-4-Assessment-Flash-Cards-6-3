@@ -8,9 +8,16 @@
 
 import UIKit
 
+// Custom Delegate Step 1
+protocol CardCellDelegate: AnyObject {
+    func didSelectMoreActionsButton(_ cardCell: CardCell, card: Card)
+}
+
 class CardCell: UICollectionViewCell {
     
-private var card: Card!
+    weak var delegate: CardCellDelegate?
+    
+private var currentCard: Card!
     
     //ANIMATION:
     private lazy var longPressGesture:
@@ -96,9 +103,10 @@ private var card: Card!
     }
     
     @objc private func moreActionsButtonPressed(_ sender: UIButton){
-        print("button was pressed for card \(card.quizTitle)")
+        print("button was pressed for card \(currentCard.quizTitle)")
         
-        //FIXME: delegate?.didSelectMoreButton(self, article: currentArticle)
+        //FIXME:
+        delegate?.didSelectMoreActionsButton(self, card: currentCard)
     }
     
     private func setupMoreActionsButtonConstraints() {

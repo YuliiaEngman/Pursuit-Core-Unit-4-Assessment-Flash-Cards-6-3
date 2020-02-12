@@ -15,6 +15,7 @@ class SearchCardsViewController: UIViewController {
     
     public var dataPersistence: DataPersistence<Card>!
     
+    var card: Card?
     // data for our collection view
        private var cards = [Card]() {
            didSet {
@@ -47,10 +48,6 @@ class SearchCardsViewController: UIViewController {
     func loadData() {
         cards = Card.getCards()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        //fetchCards()
-//    }
     
     //FIXME: create private func fetchCards() that searches from API and changes on every symbol
 //    private func fetchCards() {
@@ -65,6 +62,16 @@ class SearchCardsViewController: UIViewController {
 //            }
 //        }
 //    }
+    
+    @objc func addButtonPressed(_ sender: UIButton) {
+        guard let card = card else { return }
+        do {
+            try dataPersistence.createItem(card)
+            print("card was created")
+        } catch {
+            print("error saving card \(error)")
+        }
+    }
 }
 
 extension SearchCardsViewController: UICollectionViewDataSource {
@@ -77,7 +84,7 @@ extension SearchCardsViewController: UICollectionViewDataSource {
             fatalError("could not downcast to SearchCell")
         }
         let card = cards[indexPath.row]
-        cell.configureCell(with: card)
+        cell.configureCell(for: card)
         //FIXME: remove cell color
         cell.backgroundColor = .yellow
         return cell
@@ -109,5 +116,28 @@ extension SearchCardsViewController: UISearchBarDelegate {
             return
         }
         cards = cards.filter { $0.quizTitle.lowercased().contains(searchText.lowercased())}
+    }
+}
+
+extension SearchCardsViewController: SearchCellDelegate {
+    func didSelectAddButton(_ searchCell: SearchCell, card: Card) {
+        do {
+            try dataPersistence.createItem(card)
+            print("card created")
+            self.showAlert(title: "Saved", message: "Card was saved")
+        } catch {
+            print("error saving card \(error)")
+        }
+        print(card.quizTitle)
+    }
+}
+
+extension SearchCardsViewController {
+    func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: completion)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
