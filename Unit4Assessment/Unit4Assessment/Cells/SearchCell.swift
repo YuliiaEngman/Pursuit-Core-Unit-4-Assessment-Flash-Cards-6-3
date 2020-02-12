@@ -21,11 +21,18 @@ class SearchCell: UICollectionViewCell {
     private var currentCard: Card!
     
     //ANIMATION:
-    private lazy var longPressGesture:
-        UILongPressGestureRecognizer = {
-            let gesture = UILongPressGestureRecognizer()
-            gesture.addTarget(self, action: #selector(didLongPress(_:)))
-            return gesture
+//    private lazy var longPressGesture:
+//        UILongPressGestureRecognizer = {
+//            let gesture = UILongPressGestureRecognizer()
+//            gesture.addTarget(self, action: #selector(didLongPress(_:)))
+//            return gesture
+//    }()
+    
+    //create tap gesture:
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(tapPressed(_:)))
+        return gesture
     }()
     
     public lazy var addButton: UIButton = {
@@ -77,20 +84,30 @@ class SearchCell: UICollectionViewCell {
         setupQuestionLabelConstraints()
         setupAnswersLabelConstraints()
         
-        addGestureRecognizer(longPressGesture)
+        addGestureRecognizer(tapGesture)
         questionLabel.isUserInteractionEnabled = true
         answersLabel.isUserInteractionEnabled = true
     }
     
-    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
-        print("outside gesture")
-        //guard let currentCard = card else { return }
+//    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+//        print("outside gesture")
+//        //guard let currentCard = card else { return }
+//        if gesture.state == .began ||
+//            gesture.state == .changed {
+//            print("long pressed")
+//            return
+//        }
+//
+//        isShowingAnswers.toggle()
+//        self.animate()
+//    }
+    
+    @objc private func tapPressed(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .began ||
             gesture.state == .changed {
-            print("long pressed")
+            print("tap pressed")
             return
         }
-        
         isShowingAnswers.toggle()
         self.animate()
     }
