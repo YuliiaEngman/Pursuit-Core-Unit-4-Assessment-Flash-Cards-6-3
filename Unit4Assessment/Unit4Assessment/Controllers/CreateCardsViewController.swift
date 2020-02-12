@@ -46,7 +46,8 @@ class CreateCardsViewController: UIViewController {
         let createdCard = Card(id: "", quizTitle: createCardView.textField.text, facts: [createCardView.textView1.text, createCardView.textView2.text])
         
         
-        if createdCard.facts!.count <= 1 {
+        if createCardView.textView1.text == "" ||
+            createCardView.textView2.text == "" {
             self.showAlert(title: "Add Facts", message: "The Quiz requires two facts")
         } else if createdCard.quizTitle?.isEmpty == true {
         self.showAlert(title: "Add Title", message: "Title is required")
