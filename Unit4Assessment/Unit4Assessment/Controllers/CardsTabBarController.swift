@@ -17,7 +17,7 @@ class CardsTabBarController: UITabBarController {
     //VC1:
     private lazy var cardsQuizViewController: CardsQuizViewController = {
         let viewController = CardsQuizViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Cards Quiz", image: UIImage(systemName: "rectangle.grid.1x2"), tag: 0)
+        viewController.tabBarItem = UITabBarItem(title: "Card Quiz", image: UIImage(systemName: "rectangle.grid.1x2"), tag: 0)
       
         //FIXME: add datapersistence + delegate?
         viewController.dataPersistence = dataPersistence

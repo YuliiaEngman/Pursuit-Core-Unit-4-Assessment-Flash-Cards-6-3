@@ -30,7 +30,7 @@ class CardsQuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
-        navigationItem.title = "Search Card"
+        navigationItem.title = "Card Quiz"
         
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
@@ -45,23 +45,10 @@ class CardsQuizViewController: UIViewController {
     }
 }
 
-extension CardsQuizViewController: DataPersistenceDelegate {
-    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was saved")
-        //FIXME:
-        // fetchSavedArticles() // using it to test
-        
-    }
-    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was deleted")
-        //fetchSavedArticles()
-    }
-}
-
 extension CardsQuizViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //FIXME: cards.count
-        return cards.count
+        return 20
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardCell else {
@@ -83,6 +70,20 @@ extension CardsQuizViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: itemHeight)
     }
 }
+
+extension CardsQuizViewController: DataPersistenceDelegate {
+    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("item was saved")
+        //FIXME:
+        // fetchSavedArticles() // using it to test
+        
+    }
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("item was deleted")
+        //fetchSavedArticles()
+    }
+}
+
 
 
 
