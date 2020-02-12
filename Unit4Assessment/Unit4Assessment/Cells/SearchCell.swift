@@ -8,12 +8,14 @@
 
 import UIKit
 
+//Custom Delegation: Step 1 out of 6
 protocol SearchCellDelegate: AnyObject {
     func didSelectAddButton(_ searchCell: SearchCell, card: Card)
 }
 
 class SearchCell: UICollectionViewCell {
     
+    //Custom Delegation: Step 2 out of 6
     weak var delegate: SearchCellDelegate?
     
     private var currentCard: Card!
@@ -63,6 +65,7 @@ class SearchCell: UICollectionViewCell {
         commonInit()
     }
     
+    //Custom Delegation: Step 3 out of 6
     @objc private func addButtonPressed(_ sender: UIButton){
         print("add button was pressed for card \(currentCard.quizTitle)")
         //FIXME:

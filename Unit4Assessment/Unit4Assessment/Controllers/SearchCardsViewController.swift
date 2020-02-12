@@ -15,12 +15,14 @@ class SearchCardsViewController: UIViewController {
     
     public var dataPersistence: DataPersistence<Card>!
     
+    //Custom Delegation: Step 4 out of 6 (conform variable, even if you have didSet with it bellow
     var card: Card?
+    
     // data for our collection view
        private var cards = [Card]() {
            didSet {
                DispatchQueue.main.async {
-                   self.searchCardsView.collectionView.reloadData()
+            self.searchCardsView.collectionView.reloadData()
                }
            }
        }
@@ -49,34 +51,20 @@ class SearchCardsViewController: UIViewController {
         cards = Card.getCards()
     }
     
-    //FIXME: create private func fetchCards() that searches from API and changes on every symbol
-//    private func fetchCards() {
-//        CardsApIClient.fetchCards{[weak self] result in
-//            switch result {
-//            case .failure(let appError):
-//                print("error fetching cards: \(appError)")
-//            case .success(let cards):
-//                print("found \(cards.count) cards and expect 52 cards")
-//                dump(cards)
-//                self?.cards = cards
-//            }
+//    @objc func addButtonPressed(_ sender: UIButton) {
+//       guard let card = card else { return }
+//        do {
+//            try dataPersistence.createItem(card)
+//            print("card was created")
+//        } catch {
+//            print("error saving card \(error)")
 //        }
 //    }
-    
-    @objc func addButtonPressed(_ sender: UIButton) {
-       guard let card = card else { return }
-        do {
-            try dataPersistence.createItem(card)
-            print("card was created")
-        } catch {
-            print("error saving card \(error)")
-        }
-    }
 }
 
+//Custom Delegation: Step 5 out of 6
 extension SearchCardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //FIXME: cards.count
         return cards.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -85,6 +73,7 @@ extension SearchCardsViewController: UICollectionViewDataSource {
         }
         let card = cards[indexPath.row]
         cell.configureCell(for: card)
+        cell.delegate = self
         //FIXME: remove cell color
         cell.backgroundColor = .yellow
         return cell
@@ -119,6 +108,7 @@ extension SearchCardsViewController: UISearchBarDelegate {
     }
 }
 
+//Custom Delegation: Step 6 out of 6
 extension SearchCardsViewController: SearchCellDelegate {
     func didSelectAddButton(_ searchCell: SearchCell, card: Card) {
         do {
