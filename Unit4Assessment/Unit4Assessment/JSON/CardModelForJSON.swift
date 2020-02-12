@@ -16,9 +16,9 @@ import Foundation
 //}
 
 struct Card: Codable & Equatable {
-    let id: String
-    let quizTitle: String
-    let facts: [String]
+    let id: String?
+    var quizTitle: String?
+    var facts: [String]?
 }
 
 extension Card {

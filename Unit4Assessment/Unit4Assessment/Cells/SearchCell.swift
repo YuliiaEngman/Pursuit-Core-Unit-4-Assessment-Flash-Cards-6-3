@@ -67,7 +67,7 @@ class SearchCell: UICollectionViewCell {
     
     //Custom Delegation: Step 3 out of 6
     @objc private func addButtonPressed(_ sender: UIButton){
-        print("add button was pressed for card \(currentCard.quizTitle)")
+        print("add button was pressed for card \(String(describing: currentCard.quizTitle))")
         //FIXME:
         delegate?.didSelectAddButton(self, card: currentCard)
     }
@@ -146,9 +146,9 @@ class SearchCell: UICollectionViewCell {
         currentCard = card
         questionLabel.text = card.quizTitle
         answersLabel.text = """
-        \(card.facts.first?.description ?? "")
+        \(card.facts?.first ?? "")
         
-        \(card.facts.last?.description ?? "")
+        \(card.facts?.last ?? "")
         """
     }
 }

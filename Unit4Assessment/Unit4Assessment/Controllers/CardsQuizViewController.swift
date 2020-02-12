@@ -93,7 +93,7 @@ extension CardsQuizViewController: DataPersistenceDelegate {
 
 extension CardsQuizViewController: CardCellDelegate {
     func didSelectMoreActionsButton(_ cardCell: CardCell, card: Card) {
-        print("didSelectMoreActionsButton: \(card.quizTitle)")
+        print("didSelectMoreActionsButton: \(String(describing: card.quizTitle))")
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

@@ -103,7 +103,7 @@ private var currentCard: Card!
     }
     
     @objc private func moreActionsButtonPressed(_ sender: UIButton){
-        print("button was pressed for card \(currentCard.quizTitle)")
+        print("button was pressed for card \(String(describing: currentCard.quizTitle))")
         
         //FIXME:
         delegate?.didSelectMoreActionsButton(self, card: currentCard)
@@ -145,9 +145,9 @@ private var currentCard: Card!
         currentCard = savedCard
         questionLabel.text = savedCard.quizTitle
         answersLabel.text = """
-        \(savedCard.facts.first?.description ?? "")
+        \(savedCard.facts?.first ?? "")
         
-        \(savedCard.facts.last?.description ?? "")
+        \(savedCard.facts?.last ?? "")
         """
     }
 }

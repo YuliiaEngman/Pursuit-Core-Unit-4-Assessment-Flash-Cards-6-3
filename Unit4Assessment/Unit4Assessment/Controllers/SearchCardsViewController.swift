@@ -104,7 +104,7 @@ extension SearchCardsViewController: UISearchBarDelegate {
             loadData()
             return
         }
-        cards = cards.filter { $0.quizTitle.lowercased().contains(searchText.lowercased())}
+        cards = cards.filter { ($0.quizTitle!.lowercased().contains(searchText.lowercased()))}
     }
 }
 
@@ -118,7 +118,7 @@ extension SearchCardsViewController: SearchCellDelegate {
         } catch {
             print("error saving card \(error)")
         }
-        print(card.quizTitle)
+       // print(card.quizTitle)
     }
 }
 
