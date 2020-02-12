@@ -141,12 +141,13 @@ private var currentCard: Card!
         ])
     }
     
-    public func configureCell(with cards: Card) {
-        questionLabel.text = cards.quizTitle
+    public func configureCell(for savedCard: Card) {
+        currentCard = savedCard
+        questionLabel.text = savedCard.quizTitle
         answersLabel.text = """
-        \(cards.facts.first?.description ?? "")
+        \(savedCard.facts.first?.description ?? "")
         
-        \(cards.facts.last?.description ?? "")
+        \(savedCard.facts.last?.description ?? "")
         """
     }
 }

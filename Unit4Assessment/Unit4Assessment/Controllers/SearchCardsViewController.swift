@@ -64,7 +64,7 @@ class SearchCardsViewController: UIViewController {
 //    }
     
     @objc func addButtonPressed(_ sender: UIButton) {
-        guard let card = card else { return }
+       guard let card = card else { return }
         do {
             try dataPersistence.createItem(card)
             print("card was created")

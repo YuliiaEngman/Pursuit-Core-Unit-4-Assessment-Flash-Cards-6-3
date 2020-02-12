@@ -17,7 +17,7 @@ class CardsQuizViewController: UIViewController {
     public var dataPersistence: DataPersistence<Card>!
     
     // data for our collection view
-    private var cards = [Card]() {
+    private var savedCards = [Card]() {
         didSet {
             DispatchQueue.main.async {
                 self.cardsView.collectionView.reloadData()
@@ -28,6 +28,7 @@ class CardsQuizViewController: UIViewController {
     override func loadView() {
         view = cardsView
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
@@ -38,24 +39,28 @@ class CardsQuizViewController: UIViewController {
         
         cardsView.collectionView.register(CardCell.self, forCellWithReuseIdentifier: "cardCell")
         
-        loadData()
+        fetchSavedCards()
     }
     
-    func loadData() {
-        cards = Card.getCards()
+    func fetchSavedCards() {
+        do {
+            savedCards = try dataPersistence.loadItems()
+        } catch {
+            print("error saving cards \(error)")
+        }
     }
 }
 
 extension CardsQuizViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards.count
+        return savedCards.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardCell else {
             fatalError("could not downcast to CardCell")
         }
-        let card = cards[indexPath.row]
-        cell.configureCell(with: card)
+        let savedCard = savedCards[indexPath.row]
+        cell.configureCell(for: savedCard)
         //FIXME: remove cell color
         cell.backgroundColor = .blue
         cell.delegate = self
@@ -75,14 +80,14 @@ extension CardsQuizViewController: UICollectionViewDelegateFlowLayout {
 extension CardsQuizViewController: DataPersistenceDelegate {
     func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         print("item was saved")
-        //FIXME:
-        // fetchSavedArticles() // using it to test
+        
+        fetchSavedCards()
         
     }
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         print("item was deleted")
-        //FIXME:
-        //fetchSavedArticles()
+        
+        fetchSavedCards()
     }
 }
 
@@ -105,7 +110,7 @@ extension CardsQuizViewController: CardCellDelegate {
     }
     
     private func deleteCard(_ card: Card) {
-        guard let index = cards.firstIndex(of: card) else {
+        guard let index = savedCards.firstIndex(of: card) else {
             return
         }
         do {

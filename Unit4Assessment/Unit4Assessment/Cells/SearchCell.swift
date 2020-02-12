@@ -63,6 +63,12 @@ class SearchCell: UICollectionViewCell {
         commonInit()
     }
     
+    @objc private func addButtonPressed(_ sender: UIButton){
+        print("add button was pressed for card \(currentCard.quizTitle)")
+        //FIXME:
+        delegate?.didSelectAddButton(self, card: currentCard)
+    }
+    
     private func commonInit(){
         setupAddButtonConstraints()
         setupQuestionLabelConstraints()
@@ -99,12 +105,6 @@ class SearchCell: UICollectionViewCell {
                 self.questionLabel.alpha = 1.0
             }, completion: nil)
         }
-    }
-    
-    @objc private func addButtonPressed(_ sender: UIButton){
-        print("button was pressed for card \(currentCard.quizTitle)")
-        //FIXME:
-        delegate?.didSelectAddButton(self, card: currentCard)
     }
     
     private func setupAddButtonConstraints() {
