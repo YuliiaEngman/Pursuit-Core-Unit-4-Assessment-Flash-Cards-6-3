@@ -19,18 +19,18 @@ class SearchCardsViewController: UIViewController {
     var card: Card?
     
     // data for our collection view
-       private var cards = [Card]() {
-           didSet {
-               DispatchQueue.main.async {
-            self.searchCardsView.collectionView.reloadData()
-               }
-           }
-       }
+    private var cards = [Card]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.searchCardsView.collectionView.reloadData()
+            }
+        }
+    }
     
     override func loadView() {
         view = searchCardsView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemYellow
@@ -51,15 +51,15 @@ class SearchCardsViewController: UIViewController {
         cards = Card.getCards()
     }
     
-//    @objc func addButtonPressed(_ sender: UIButton) {
-//       guard let card = card else { return }
-//        do {
-//            try dataPersistence.createItem(card)
-//            print("card was created")
-//        } catch {
-//            print("error saving card \(error)")
-//        }
-//    }
+    //    @objc func addButtonPressed(_ sender: UIButton) {
+    //       guard let card = card else { return }
+    //        do {
+    //            try dataPersistence.createItem(card)
+    //            print("card was created")
+    //        } catch {
+    //            print("error saving card \(error)")
+    //        }
+    //    }
 }
 
 //Custom Delegation: Step 5 out of 6
@@ -111,23 +111,42 @@ extension SearchCardsViewController: UISearchBarDelegate {
 //Custom Delegation: Step 6 out of 6
 extension SearchCardsViewController: SearchCellDelegate {
     func didSelectAddButton(_ searchCell: SearchCell, card: Card) {
-        do {
-            try dataPersistence.createItem(card)
-            print("card created")
-            self.showAlert(title: "Saved", message: "Card was saved")
-        } catch {
-            print("error saving card \(error)")
+        //        do {
+        //            try dataPersistence.createItem(card)
+        //            print("card created")
+        //            self.showAlert(title: "Saved", message: "Card was saved")
+        //        } catch {
+        //            print("error saving card \(error)")
+        //        }
+        if dataPersistence.hasItemBeenSaved(card) {
+            if let index = try? dataPersistence.loadItems().firstIndex(of: card) {
+               // do {
+                    //try dataPersistence.deleteItem(at: index)
+                    self.showAlert(title: "Duplicate", message: "This card is already saved")
+               // } catch {
+                 //   print("error deleting card: \(error)")
+               // }
+            }
+        } else {
+            do {
+                // save to documents directory
+                try dataPersistence.createItem(card)
+                print("card created")
+                self.showAlert(title: "Saved", message: "Card was saved")
+            } catch {
+                print("error saving card: \(error)")
+            }
         }
-       // print(card.quizTitle)
     }
+}
+    
+    extension SearchCardsViewController {
+        func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: completion)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
 }
 
-extension SearchCardsViewController {
-    func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: completion)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
-}
